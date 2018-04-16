@@ -1,5 +1,6 @@
 require './simple_web_app'
-require './lib/*.rb'
+require './lib/tweet'
+require './lib/most_mention_service'
 
 get '/most_relevants' do
 	tw = Tweet.all
@@ -11,4 +12,4 @@ get '/most_mentions' do
 	MostMentionService.call(tw.items)
 end
 
-Rack::Handler::WEBrick.run SimpleWebApp::Application, Port: 9292
+Rack::Handler::WEBrick.run SimpleWebApp::Application, Port: 9292 unless ENV['RACK_ENV'] == 'test'
