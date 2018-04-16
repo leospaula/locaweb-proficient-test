@@ -11,5 +11,3 @@ get '/most_mentions' do
 	tw = Tweet.all
 	MostMentionService.call(tw.items)
 end
-
-Rack::Handler::WEBrick.run SimpleWebApp::Application, Port: 9292 unless ENV['RACK_ENV'] == 'test'
